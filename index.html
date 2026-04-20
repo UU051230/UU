@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2000-2008 经典卡通回顾</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:"Microsoft YaHei",sans-serif}
+        body{background:#f6f5f0;color:#333}
+        header{background:#2c3e50;color:white;padding:25px 20px;text-align:center}
+        .container{max-width:1100px;margin:0 auto;padding:20px}
+        .tool-box{background:white;padding:15px 20px;border-radius:12px;margin:20px 0;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+        input,select{padding:8px 12px;border:1px solid #ddd;border-radius:6px;flex:1;min-width:140px}
+        .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;margin-top:20px}
+        .card{background:white;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.08);transition:0.3s}
+        .card:hover{transform:translateY(-4px)}
+        .card img{width:100%;height:170px;object-fit:cover}
+        .info{padding:15px}
+        .info h3{margin-bottom:6px}
+        .badge{font-size:12px;color:#fff;background:#e67e22;padding:2px 6px;border-radius:4px;margin-right:5px}
+        .desc{font-size:13px;color:#666;margin-top:8px}
+        footer{text-align:center;padding:25px;background:#2c3e50;color:white;margin-top:40px}
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>2000–2008 经典卡通回顾</h1>
+    <p>一代人的童年黄金时代 | 人文主题卡通资料库</p>
+</header>
+
+<div class="container">
+    <div class="tool-box">
+        <input type="text" id="search" placeholder="搜索作品名称、地区、年份">
+        <select id="country">
+            <option value="">全部地区</option>
+            <option value="中国">中国</option>
+            <option value="日本">日本</option>
+            <option value="美国">美国</option>
+            <option value="欧洲">欧洲</option>
+        </select>
+        <select id="year">
+            <option value="">全部年份</option>
+            <option value="2000">2000</option>
+            <option value="2001">2001</option>
+            <option value="2002">2002</option>
+            <option value="2003">2003</option>
+            <option value="2004">2004</option>
+            <option value="2005">2005</option>
+            <option value="2006">2006</option>
+            <option value="2007">2007</option>
+            <option value="2008">2008</option>
+        </select>
+    </div>
+
+    <div class="grid" id="list"></div>
+</div>
+
+<footer>2000–2008 经典卡通回顾 | 人文主题卡通网站</footer>
+
+<script>
+const data = [
+{name:"哪吒传奇",year:"2003",country:"中国",desc:"中国经典神话动画，90后童年回忆",img:"https://images.cnblogs.com/cnblogs_com/liuxin2020/202404240949167.png"},
+{name:"喜羊羊与灰太狼",year:"2005",country:"中国",desc:"国民级长篇搞笑动画",img:"https://images.cnblogs.com/cnblogs_com/liuxin2020/202404240949168.png"},
+{name:"大头儿子小头爸爸",year:"2002",country:"中国",desc:"经典家庭亲子动画",img:"https://images.cnblogs.com/cnblogs_com/liuxin2020/202404240949169.png"},
+{name:"葫芦兄弟",year:"2007",country:"中国",desc:"经典国产神话再制作",img:"https://images.cnblogs.com/cnblogs_com/liuxin2020/202404240949170.png"},
+{name:"海绵宝宝",year:"2001",country:"美国",desc:"全球现象级幽默卡通",img:"https://images.cnblogs.com/cnblogs_com/liuxin2020/202404240949171.png"},
+{name:"飞天小女警",year:"2000",country:"美国",desc:"可爱女孩英雄冒险",img:"https://images.cnblogs.com/cnblogs_com/liuxin2020/202404240949172.png"},
+{name:"成龙历险记",year:"2002",country:"美国",desc:"以成龙为原型的冒险动画",img:"https://images.cnblogs.com/cnblogs_com/liuxin2020/202404240949173.png"},
+{name:"猫和老鼠",year:"2006",country:"美国",desc:"经典喜剧动画新版",img:"https://images.cnblogs.com/cnblogs_com/liuxin2020/202404240949174.png"},
+{name:"哆啦A梦",year:"2000",country:"日本",desc:"陪伴童年的治愈系动画",img:"https://images.cnblogs.com/cnblogs_com/liuxin2020/202404240949175.png"},
+{name:"数码宝贝",year:"2001",country:"日本",desc:"经典冒险战斗动画",img:"https://images.cnblogs.com/cnblogs_com/liuxin2020/202404240949176.png"},
+{name:"神奇宝贝",year:"2002",country:"日本",desc:"精灵收集冒险",img:"https://images.cnblogs.com/cnblogs_com/liuxin2020/202404240949177.png"},
+{name:"百变小樱",year:"2003",country:"日本",desc:"魔法少女经典",img:"https://images.cnblogs.com/cnblogs_com/liuxin2020/202404240949178.png"},
+{name:"火影忍者",year:"2004",country:"日本",desc:"全球知名热血动画",img:"https://images.cnblogs.com/cnblogs_com/liuxin2020/202404240949179.png"},
+{name:"海贼王",year:"2005",country:"日本",desc:"经典航海冒险",img:"https://images.cnblogs.com/cnblogs_com/liuxin2020/202404240949180.png"},
+{name:"樱桃小丸子",year:"2006",country:"日本",desc:"日常治愈系动画",img:"https://images.cnblogs.com/cnblogs_com/liuxin2020/202404240949181.png"},
+{name:"神探加杰特",year:"2007",country:"美国",desc:"经典搞笑侦探卡通",img:"https://images.cnblogs.com/cnblogs_com/liuxin2020/202404240949182.png"},
+{name:"小熊维尼",year:"2008",country:"美国",desc:"温馨治愈卡通",img:"https://images.cnblogs.com/cnblogs_com/liuxin2020/202404240949183.png"},
+{name:"丁丁历险记",year:"2000",country:"欧洲",desc:"欧洲经典冒险动画",img:"https://images.cnblogs.com/cnblogs_com/liuxin2020/202404240949184.png"},
+{name:"小羊肖恩",year:"2007",country:"欧洲",desc:"英国经典默剧卡通",img:"https://images.cnblogs.com/cnblogs_com/liuxin2020/202404240949185.png"},
+{name:"天线宝宝",year:"2001",country:"欧洲",desc:"低幼启蒙经典",img:"https://images.cnblogs.com/cnblogs_com/liuxin2020/202404240949186.png"},
+];
+
+function render(){
+    const s=document.getElementById("search").value.toLowerCase();
+    const c=document.getElementById("country").value;
+    const y=document.getElementById("year").value;
+    const list=data.filter(i=>
+        (i.name.toLowerCase().includes(s)||i.country.includes(s)||i.year.includes(s))&&
+        (c==""||i.country==c)&&(y==""||i.year==y)
+    );
+    const box=document.getElementById("list");
+    box.innerHTML=list.map(i=>`
+        <div class="card">
+            <img src="${i.img}" alt="${i.name}">
+            <div class="info">
+                <h3>${i.name}</h3>
+                <span class="badge">${i.country}</span>
+                <span class="badge">${i.year}</span>
+                <p class="desc">${i.desc}</p>
+            </div>
+        </div>
+    `).join("");
+}
+
+document.getElementById("search").addEventListener("input",render);
+document.getElementById("country").addEventListener("change",render);
+document.getElementById("year").addEventListener("change",render);
+render();
+</script>
+</body>
+</html>
