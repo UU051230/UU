@@ -1,34 +1,140 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2000-2008 经典卡通回顾</title>
-    <style>
-        *{margin:0;padding:0;box-sizing:border-box;font-family:"Microsoft YaHei",sans-serif}
-        body{background:#f6f5f0;color:#333}
-        header{background:#2c3e50;color:white;padding:25px 20px;text-align:center}
-        .container{max-width:1100px;margin:0 auto;padding:20px}
-        .tool-box{background:white;padding:15px 20px;border-radius:12px;margin:20px 0;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-        input,select{padding:8px 12px;border:1px solid #ddd;border-radius:6px;flex:1;min-width:140px}
-        .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;margin-top:20px}
-        .card{background:white;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.08);transition:0.3s}
-        .card:hover{transform:translateY(-4px)}
-        .card img{width:100%;height:170px;object-fit:cover}
-        .info{padding:15px}
-        .info h3{margin-bottom:6px}
-        .badge{font-size:12px;color:#fff;background:#e67e22;padding:2px 6px;border-radius:4px;margin-right:5px}
-        .desc{font-size:13px;color:#666;margin-top:8px}
-        footer{text-align:center;padding:25px;background:#2c3e50;color:white;margin-top:40px}
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2000-2008 经典卡通回顾</title>
+<style>
+/* 全局样式 */
+* {margin:0; padding:0; box-sizing:border-box; font-family:"Microsoft YaHei",sans-serif;}
+body {
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.4) 2px, transparent 3px),
+        radial-gradient(circle at 80% 40%, rgba(255,255,255,0.3) 2px, transparent 3px),
+        linear-gradient(135deg, #d8f0ff 0%, #ffe4f0 100%);
+    background-size: 80px 80px, 100px 100px, cover;
+    color:#444;
+}
+
+/* Lolita Header */
+.lolita-header {
+  background: linear-gradient(90deg, #ffb6d9, #aee1ff);
+  text-align: center;
+  padding: 20px 0 40px 0;
+  position: relative;
+  overflow: visible;
+}
+
+.fancy-title {
+  font-size: 48px;
+  font-weight: bold;
+  color: #fff;
+  -webkit-text-stroke: 2px #ff9ecb;
+  text-shadow: 2px 2px 4px rgba(255,182,217,0.5);
+  display: inline-block;
+  margin: 0;
+}
+
+.header-bow {
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  top: -10px;
+  right: 20px;
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAABXElEQVR4nO3WwQ3CMBBF0YoXkA4U6yABm2EB5WgBt4AGrBOcoCuG9nylfJtTvbt25VrQYAAAAAAAAgNfT3NcNgnc6juMvq0l52+pPc29pL+Z9tH6NH/e6iVgkAQo1VAtZAK5UCtVQLWUArlQK1dArcUFjS1n7DbrShkK5VLtdv9I5h5juhVfFZwl0AUq1QK5UCtVQLWUArlQK1dArcUFjS1n7DbTgkK5VLtdv9I5h5juhVfFZwl0AUq1QK5UCtVQLWUArlQK1dArcUFjS1n7DbrShkK5VLtdv9I5h5juhVfFZwl0AUq1QK5UCtVQLWUArlQK1dArcUFjS1n7DbrShkK5VLtdv9I5h5juhVfFZwl0AUq1QK5UCtVQLWUArlQK1dArcUFjS1n7DbrShkK5VLtdv9I5h5juhVfFZwl0AUq1QK5UCtVQLWUArlQK1dArcUFjS1n7DbrShkK5VLtdv9I5h5juhVfFZwl0AUq1QK5UCtVQLWUArlQK1dArcUFjS1n7DbrShkK5VLtdv9I5h5juhVfFZwl0AUq1QK5UCtVQLWUArlQK1dArcUFX+AwPdSztTI2eukAAAAASUVORK5CYII=') no-repeat center/contain;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: #fff;
+  margin-top: 10px;
+  text-shadow: 1px 1px 2px rgba(255,182,217,0.4);
+}
+
+/* Container */
+.container {
+    max-width:1100px;
+    margin: 40px auto;
+    padding: 30px;
+    border: 6px solid rgba(255,182,217,0.6);
+    border-radius: 25px;
+    position: relative;
+    background: rgba(255,255,255,0.85);
+    box-shadow: 0 8px 20px rgba(255,182,217,0.2);
+}
+
+/* 工具栏 */
+.tool-box {
+    background:white;
+    padding:15px 20px;
+    border-radius:12px;
+    margin:20px 0;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    align-items:center;
+}
+input,select {
+    padding:8px 12px;
+    border:1px solid #ddd;
+    border-radius:6px;
+    flex:1;
+    min-width:140px;
+}
+
+/* 卡片网格 */
+.grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+    gap:20px;
+    margin-top:20px;
+}
+
+/* 卡片样式 */
+.card {
+    background: rgba(255,255,255,0.85);
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 6px 20px rgba(255,182,217,0.25);
+    transition:0.3s;
+    backdrop-filter: blur(6px);
+}
+.card:hover{
+    transform:translateY(-6px) scale(1.03);
+}
+.card img{width:100%; height:170px; object-fit:cover;}
+.info{padding:15px;}
+.info h3{margin-bottom:6px;}
+.badge {
+    font-size:12px;
+    color:#fff;
+    background: linear-gradient(45deg, #ff9ecb, #aee1ff);
+    padding:3px 8px;
+    border-radius:999px;
+    margin-right:5px;
+}
+.desc{font-size:13px;color:#666;margin-top:8px;}
+
+/* Footer */
+footer {
+    text-align:center;
+    padding:25px;
+    background: linear-gradient(90deg, #aee1ff, #ffb6d9);
+    color:white;
+    margin-top:40px;
+}
+</style>
 </head>
 <body>
 
-<header>
-    <h1>2000–2008 经典卡通回顾</h1>
-    <p>一代人的童年黄金时代 | 人文主题卡通资料库</p>
+<!-- Header -->
+<header class="lolita-header">
+  <h1 class="fancy-title">2000–2008 经典卡通回顾</h1>
+  <div class="header-bow"></div>
+  <p class="subtitle">一代人的童年黄金时代 | 人文主题卡通资料库</p>
 </header>
 
+<!-- 内容 -->
 <div class="container">
     <div class="tool-box">
         <input type="text" id="search" placeholder="搜索作品名称、地区、年份">
@@ -74,12 +180,7 @@ const data = [
 {name:"百变小樱",year:"2003",country:"日本",desc:"魔法少女经典",img:"https://images.cnblogs.com/cnblogs_com/liuxin2020/202404240949178.png"},
 {name:"火影忍者",year:"2004",country:"日本",desc:"全球知名热血动画",img:"https://images.cnblogs.com/cnblogs_com/liuxin2020/202404240949179.png"},
 {name:"海贼王",year:"2005",country:"日本",desc:"经典航海冒险",img:"https://images.cnblogs.com/cnblogs_com/liuxin2020/202404240949180.png"},
-{name:"樱桃小丸子",year:"2006",country:"日本",desc:"日常治愈系动画",img:"https://images.cnblogs.com/cnblogs_com/liuxin2020/202404240949181.png"},
-{name:"神探加杰特",year:"2007",country:"美国",desc:"经典搞笑侦探卡通",img:"https://images.cnblogs.com/cnblogs_com/liuxin2020/202404240949182.png"},
-{name:"小熊维尼",year:"2008",country:"美国",desc:"温馨治愈卡通",img:"https://images.cnblogs.com/cnblogs_com/liuxin2020/202404240949183.png"},
-{name:"丁丁历险记",year:"2000",country:"欧洲",desc:"欧洲经典冒险动画",img:"https://images.cnblogs.com/cnblogs_com/liuxin2020/202404240949184.png"},
-{name:"小羊肖恩",year:"2007",country:"欧洲",desc:"英国经典默剧卡通",img:"https://images.cnblogs.com/cnblogs_com/liuxin2020/202404240949185.png"},
-{name:"天线宝宝",year:"2001",country:"欧洲",desc:"低幼启蒙经典",img:"https://images.cnblogs.com/cnblogs_com/liuxin2020/202404240949186.png"},
+{name:"樱桃小丸子",year:"2006",country:"日本",desc:"日常治愈系动画",img:"https://images.cnblogs.com/cnblogs_com/liuxin2020/202404240949181.png"}
 ];
 
 function render(){
